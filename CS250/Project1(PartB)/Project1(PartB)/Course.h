@@ -21,7 +21,7 @@ public:
 	Course();
 
 	//Initializer List Constructor
-	Course(std::string prefix, int number, int units);
+	Course(const std::string& prefix, int number, int units);
 
 	//Sets values for member variables of Course
 	void setCourseInfo(std::string prefix, int number, int units);
