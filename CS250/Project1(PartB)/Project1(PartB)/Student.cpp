@@ -35,8 +35,8 @@ void Student::setStudent(const Student& otherStudent)
 }
 
 //Sets values for member variables of Student Object
-void Student::setStudentInfo(int newID, string newFirst, string newLast, 
-	bool paidtuition, multimap<Course, char> coursesTaken)
+void Student::setStudentInfo(int newID, const string& newFirst, const string& newLast, 
+	bool paidtuition, const multimap<Course, char>& coursesTaken)
 {
 	studentID = newID;
 	firstName = newFirst;
@@ -101,7 +101,7 @@ bool Student::isTuitionPaid() const
 }
 
 //Checks if a student has taken/completed the paramter course and returns true/false
-bool Student::isCourseCompleted(string prefix, int cnumber) const
+bool Student::isCourseCompleted(const string& prefix, int cnumber) const
 {
 	if (coursesCompleted.empty())
 	{
@@ -147,12 +147,13 @@ double Student::calculateGPA() const
 		}
 
 	}
+	cout.precision(3);
 
 	return (totalunits > 0) ? (points / totalunits) : 0.0;
 }
 
 //Calculates how much the total cost of all courses taken would be
-double Student::billingAmount(double tuitionrate)
+double Student::billingAmount(double tuitionrate) const
 {
 	return tuitionrate * static_cast<double>(coursesCompleted.size());
 }
@@ -177,13 +178,13 @@ void Student::printStudentInfo(double tuitionrate) const
 			<< iter.first.getCourseUnits() << "     " << iter.second << endl;
 	}
 	cout << endl;
-	cout << "Total number of credit hours: " << getNumberOfUnits() << endl;
-	//Add GPA HERE IDFGI IT WORKS IDRGW
+	cout << "Total number of credit hours: " << getUnitsCompleted() << endl;
 	cout << "Current Term GPA: " << calculateGPA() << endl;
+	cout << endl;
 	for (int i = 0; i < 24; i++)
 	{
-		cout << "_*";
+		cout << "-*";
 	}
-	cout << "_" << endl;
-	cout << endl; 
+	cout << "-" << endl;
+	cout << endl;
 }

@@ -47,7 +47,7 @@ int main()
 	student3.setStudentInfo(777777, "Lily", "Kim" , true, { {mech1, 'B'},
 		{ mech2, 'C' } });
 	Student student4; 
-	student4.setStudentInfo(111111, "Sheldon", "Cooper", false, { {calc1, 'A'},
+	student4.setStudentInfo(111111, "Sheldon", "Cooper", true, { {calc1, 'A'},
 		{ calc2, 'A' } , {mech1, 'B'}, { mech2, 'A' } });
 	/*
 	* Student 1 should be John
@@ -75,16 +75,16 @@ int main()
 	cout << endl;
 	
 	cout << "Testing printStudentInfo: \n";
-	newStudents.printStudentInfo(777777, 400.0);
+	newStudents.printStudentByID(777777, 400.0);
 	cout << endl;
 
 	cout << "Printing Students by Name: \n";
-	newStudents.printStudentsByName("Cooper");
+	newStudents.printStudentByName("Cooper");
 	cout << endl;
 
 	cout << "Printing Students by Course: \n";
-	newStudents.printStudentByCourse("CALC", 100);
-	newStudents.printStudentByCourse("ARTS", 100);
+	newStudents.printStudentsByCourse("CALC", 100);
+	newStudents.printStudentsByCourse("ARTS", 100);
 	cout << endl;
 
 	cout << "Printing all students: \n";

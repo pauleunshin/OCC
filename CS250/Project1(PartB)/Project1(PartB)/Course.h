@@ -24,7 +24,7 @@ public:
 	Course(const std::string& prefix, int number, int units);
 
 	//Sets values for member variables of Course
-	void setCourseInfo(std::string prefix, int number, int units);
+	void setCourseInfo(const std::string& prefix, int number, int units);
 
 	//Returns member variable coursePrefix 
 	std::string getCoursePrefix() const;

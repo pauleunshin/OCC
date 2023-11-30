@@ -17,7 +17,7 @@ Course::Course() : coursePrefix("N/A"),
 	courseNumber(0), courseUnits(0) {}
 
 
-Course::Course(string prefix, int num, int units) : coursePrefix(prefix),
+Course::Course(const std::string& prefix, int num, int units) : coursePrefix(prefix),
 	courseNumber(num), courseUnits(units) {}
 
 //Sets values for member variables of Course

@@ -21,9 +21,6 @@
 class Node
 {
 public:
-	Student student;
-	Node* next;
-
 	Node() : student(), next(nullptr) {}
 	Node(Student newStudent, Node* newNext)
 		: student(newStudent), next(newNext) {}
@@ -53,13 +50,13 @@ public:
 	int getNoOfStudents() const;
 
 	//Prints the info of a student in the list
-	void printStudentInfo(int searchID, double tuitionRate) const;
+	void printStudentByID(int searchID, double tuitionRate) const;
 
 	//Prints the info of a student by their name
-	void printStudentsByName(std::string searchLastName) const;
+	void printStudentByName(const std::string& searchLastName) const;
 
 	//Prints the info of students enrolled in a course
-	void printStudentByCourse(std::string searchCourse, int searchCourseNum) const;
+	void printStudentsByCourse(const std::string& searchCourse, int searchCourseNum) const;
 
 	//Prints the info of all students in linked list
 	void printAllStudents(double tuitionRate) const;

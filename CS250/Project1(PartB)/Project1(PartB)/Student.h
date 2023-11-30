@@ -29,8 +29,8 @@ public:
 	void setStudent(const Student& otherStudent);
 
 	//Sets values for member variables of Student Object
-	void setStudentInfo(int newID, std::string newFirst, std::string newLast,
-		bool paidtuition, std::multimap<Course, char> coursesTaken);
+	void setStudentInfo(int newID, const std::string& newFirst, const std::string& newLast,
+		bool paidtuition, const std::multimap<Course, char>& coursesTaken);
 
 	//Returns student ID
 	int getID() const;
@@ -48,7 +48,7 @@ public:
 	int getNumberOfCourses() const;
 
 	//Returns how many units the student completed
-	int getNumberOfUnits() const;
+	int getUnitsCompleted() const;
 
 	//Returns a multimap of all courses the student has completed with letter grades
 	std::multimap<Course,char> getCoursesCompleted() const;
@@ -57,13 +57,13 @@ public:
 	bool isTuitionPaid() const;
 
 	//Checks if a student has taken/completed the paramter course and returns true/false
-	bool isCourseCompleted(std::string prefix, int cnumber) const;
+	bool isCourseCompleted(const std::string& prefix, int cnumber) const;
 
 	//Calculates the current GPA of the student and returns it as a double
 	double calculateGPA() const;
 
 	//Calculates how much the total cost of all courses taken would be
-	double billingAmount(double tuitionrate);
+	double billingAmount(double tuitionrate) const;
 
 	//Prints the student's ID and Name
 	void printStudent() const;

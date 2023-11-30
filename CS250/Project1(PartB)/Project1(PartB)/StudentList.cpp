@@ -110,7 +110,6 @@ void StudentList::printStudentsByCourse(const string& searchCourse, int searchCo
 	}
 }
 
-
 //Prints the info of all students in linked list
 void StudentList::printAllStudents(double tuitionRate) const
 {
@@ -122,7 +121,6 @@ void StudentList::printAllStudents(double tuitionRate) const
 		current = current->getNext();
 	}
 }
-
 
 //Removes all students in the list
 void StudentList::clearStudentList()
