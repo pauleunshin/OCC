@@ -59,7 +59,7 @@ int main()
 	cout << "Has Lily finished Calc100?: " << student3.isCourseCompleted("CALC", 100) <<endl;
 	cout << "Has Sheldon paid Tuition?: " << student4.isTuitionPaid() << endl;
 	cout << "How much would Sheldon pay for his tuition?: " << student4.billingAmount(400.0) << endl;
-	cout << "How many units has John taken?: " << student1.getNumberOfUnits() << endl;
+	cout << "How many units has John taken?: " << student1.getUnitsCompleted() << endl;
 	cout << "How many courses has Scotty finished?: " << student2.getNumberOfCourses() << endl;
 	cout << endl; 
 

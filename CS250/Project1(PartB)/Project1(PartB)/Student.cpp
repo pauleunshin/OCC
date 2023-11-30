@@ -78,7 +78,7 @@ int Student::getNumberOfCourses() const
 }
 
 //Returns how many units the student completed
-int Student::getNumberOfUnits() const
+int Student::getUnitsCompleted() const
 {
 	int totalunits = 0;
 	for (auto iter : coursesCompleted)
