@@ -41,6 +41,7 @@ void Student::setStudentInfo(int newID, string newFirst, string newLast,
 	studentID = newID;
 	firstName = newFirst;
 	lastName = newLast;
+	tuitionWasPaid = paidtuition;
 	numberOfCourses = static_cast<int>(coursesTaken.size());
 	coursesCompleted = coursesTaken;
 }
@@ -102,10 +103,17 @@ bool Student::isTuitionPaid() const
 //Checks if a student has taken/completed the paramter course and returns true/false
 bool Student::isCourseCompleted(string prefix, int cnumber) const
 {
-	for (auto iter : coursesCompleted)
+	if (coursesCompleted.empty())
 	{
-		if (iter.first.getCoursePrefix() == prefix && static_cast<int>(iter.first.getCourseNumber()) == cnumber)
-			return true;
+		return false;
+	}
+	else
+	{
+		for (auto iter : coursesCompleted)
+		{
+			if (iter.first.getCoursePrefix() == prefix && static_cast<int>(iter.first.getCourseNumber()) == cnumber)
+				return true;
+		}
 	}
 	return false; 
 }

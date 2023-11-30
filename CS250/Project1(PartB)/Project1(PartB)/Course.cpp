@@ -12,7 +12,6 @@
 #include <iostream>
 using namespace std;
 
-
 //Default Constructor - Initializer list
 Course::Course() : coursePrefix("N/A"), 
 	courseNumber(0), courseUnits(0) {}
@@ -22,7 +21,7 @@ Course::Course(string prefix, int num, int units) : coursePrefix(prefix),
 	courseNumber(num), courseUnits(units) {}
 
 //Sets values for member variables of Course
-void Course::setCourseInfo(string cPrefix, int cNumber, int cUnits)
+void Course::setCourseInfo(const string& cPrefix, int cNumber, int cUnits)
 {
 	coursePrefix = cPrefix;
 	courseNumber = cNumber;

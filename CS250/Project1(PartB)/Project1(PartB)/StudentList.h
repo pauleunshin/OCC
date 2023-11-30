@@ -18,14 +18,26 @@
 #include "Student.h"
 
 
-class Node 
+class Node
 {
 public:
 	Student student;
 	Node* next;
 
-	Node(const Student& newStudent, Node* newNode = nullptr) : 
-		student(newStudent), next(newNode) {}
+	Node() : student(), next(nullptr) {}
+	Node(Student newStudent, Node* newNext)
+		: student(newStudent), next(newNext) {}
+	Node* getNext() const { return next; }
+	Student getStudent() const { return student; }
+	void setData(Student newStudent) { student = newStudent; }
+	void setNext(Node* newNext)
+	{
+		next = newNext;
+	}
+	~Node() {}
+
+	Node* next;
+	Student student;
 };
 
 class StudentList
