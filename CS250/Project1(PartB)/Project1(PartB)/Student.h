@@ -19,19 +19,21 @@
 class Student
 {
 public:
+	//Constructors
 	//Default Constructor
-	Student();
+	Student() : studentID(0), firstName("N/A"), lastName("N/A"),
+		numberOfCourses(0), tuitionWasPaid(false) {}
 
-	//Initializer List Constructor
-	Student(int ID, std::string fName, std::string lName, int coursesTaken,	bool tuition);
-
+	//Mutators
 	//Copies Student Data from Paramter object
 	void setStudent(const Student& otherStudent);
 
 	//Sets values for member variables of Student Object
-	void setStudentInfo(int newID, const std::string& newFirst, const std::string& newLast,
-		bool paidtuition, const std::multimap<Course, char>& coursesTaken);
+	void setStudentInfo(int newID, const std::string& newFirst, 
+		const std::string& newLast,	bool paidtuition, 
+		const std::multimap<Course, char>& coursesTaken);
 
+	//Accessors
 	//Returns student ID
 	int getID() const;
 
@@ -50,30 +52,35 @@ public:
 	//Returns how many units the student completed
 	int getUnitsCompleted() const;
 
-	//Returns a multimap of all courses the student has completed with letter grades
+	//Returns a multimap of all courses 
+	//the student has completed with letter grades
 	std::multimap<Course,char> getCoursesCompleted() const;
 
+	//Booleans
 	//Returns True/False whether the student has paid their tuition
 	bool isTuitionPaid() const;
 
-	//Checks if a student has taken/completed the paramter course and returns true/false
-	bool isCourseCompleted(const std::string& prefix, int cnumber) const;
+	//Checks if a student has taken/completed 
+	//the paramter course and returns true/false
+	bool isCourseCompleted(const std::string& prefix, int cNumber) const;
 
-	//Calculates the current GPA of the student and returns it as a double
+	//Calculations
+	//Returns Student GPA
 	double calculateGPA() const;
 
-	//Calculates how much the total cost of all courses taken would be
-	double billingAmount(double tuitionrate) const;
+	//Returns cost of tuition for Student
+	double billingAmount(double tuitionRate) const;
 
+	//Print Statements
 	//Prints the student's ID and Name
 	void printStudent() const;
 
-	//Prints the student's ID, name, # of completed courses, courses taken w/grades, GPA and hours
-	void printStudentInfo(double tuitionrate) const;
+	//Prints the student's ID, name, # of completed courses,
+	//courses taken w/grades, GPA and hours
+	void printStudentInfo(double tuitionRate) const;
 
 	//Destructor
 	~Student() {}
-
 
 private:
 	int studentID;
@@ -82,7 +89,5 @@ private:
 	int numberOfCourses;
 	bool tuitionWasPaid;
 	std::multimap<Course, char> coursesCompleted;
-
 };
-
 #endif

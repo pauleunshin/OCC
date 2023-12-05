@@ -12,14 +12,7 @@
 #include <iostream>
 using namespace std;
 
-//Default Constructor - Initializer list
-Course::Course() : coursePrefix("N/A"), 
-	courseNumber(0), courseUnits(0) {}
-
-
-Course::Course(const std::string& prefix, int num, int units) : coursePrefix(prefix),
-	courseNumber(num), courseUnits(units) {}
-
+//Mutators
 //Sets values for member variables of Course
 void Course::setCourseInfo(const string& cPrefix, int cNumber, int cUnits)
 {
@@ -28,6 +21,7 @@ void Course::setCourseInfo(const string& cPrefix, int cNumber, int cUnits)
 	courseUnits = cUnits;
 }
 
+//Accessors
 //Returns member variable coursePrefix
 string Course::getCoursePrefix() const
 {
@@ -46,7 +40,7 @@ int Course::getCourseUnits() const
 	return courseUnits;
 }
 
-//MysteryFunction
+//Operators
 bool Course::operator<(const Course& othercourse) const
 {
 	if (coursePrefix == othercourse.coursePrefix)

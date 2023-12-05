@@ -15,9 +15,7 @@
 
 using namespace std;
 
-//Default Constructor
-StudentList::StudentList() : count(0), first(nullptr), last(nullptr) {}
-
+//Mutators
 //Add a student to the linked list 
 void StudentList::addStudent(const Student& newStudent)
 {
@@ -36,6 +34,7 @@ void StudentList::addStudent(const Student& newStudent)
 	count++;
 }
 
+//Accessors
 //Return how many students are in the list
 int StudentList::getNoOfStudents() const
 {
@@ -43,8 +42,9 @@ int StudentList::getNoOfStudents() const
 }
 
 
+//Print Statements
 //Prints the info of a student in the list
-void StudentList::printStudentByID(int searchID, double tuitionrate) const
+void StudentList::printStudentByID(int searchID, double tuitionRate) const
 {
 	Node* current = first;
 	bool found = false;
@@ -53,7 +53,7 @@ void StudentList::printStudentByID(int searchID, double tuitionrate) const
 	{
 		if (searchID == current->getStudent().getID())
 		{
-			current->getStudent().printStudentInfo(tuitionrate);
+			current->getStudent().printStudentInfo(tuitionRate);
 			found = true;
 		}
 		current = current->getNext();
@@ -61,7 +61,7 @@ void StudentList::printStudentByID(int searchID, double tuitionrate) const
 
 	if (!found)
 	{
-		cerr << "No students with ID " << searchID << " found in the list.\n";
+		cout << "No students with ID " << searchID << " found in the list.\n";
 	}
 }
 
@@ -70,7 +70,6 @@ void StudentList::printStudentByName(const string& searchLastName) const
 {
 	Node* current = first;
 	bool found = false;
-
 	while (current != nullptr)
 	{
 		if (searchLastName == current->getStudent().getLastName())
@@ -83,20 +82,21 @@ void StudentList::printStudentByName(const string& searchLastName) const
 
 	if (!found)
 	{
-		cerr << "No student with last name " << searchLastName << " is on the list.\n";
+		cout << "No student with last name " << searchLastName << " is on the list.\n";
 	}
 
 }
 
 //Prints the info of students enrolled in a course
-void StudentList::printStudentsByCourse(const string& searchCourse, int searchCourseNum) const
+void StudentList::printStudentsByCourse(const string& searchCourse, 
+	int searchCourseNum) const
 {
 	Node* current = first;
 	bool found = false;
-
 	while (current != nullptr)
 	{
-		if (current->getStudent().isCourseCompleted(searchCourse, searchCourseNum))
+		if (current->getStudent().isCourseCompleted(searchCourse,
+			searchCourseNum))
 		{
 			current->getStudent().printStudent();
 			found = true;
@@ -106,7 +106,8 @@ void StudentList::printStudentsByCourse(const string& searchCourse, int searchCo
 
 	if (!found)
 	{
-		cerr << "No students enrolled in " << searchCourse << " " << searchCourseNum << endl;
+		cout << "No students enrolled in " << searchCourse << " " 
+			<< searchCourseNum << endl;
 	}
 }
 
@@ -125,13 +126,10 @@ void StudentList::printAllStudents(double tuitionRate) const
 //Removes all students in the list
 void StudentList::clearStudentList()
 {
-
 	Node* current = first;
-	Node* temp;
-
 	while (current != nullptr)
 	{
-		temp = current;
+		Node* temp = current;
 		current = current->getNext();
 		delete temp;
 	}
@@ -141,6 +139,7 @@ void StudentList::clearStudentList()
 	count = 0;
 }
 
+//Destructor call
 StudentList::~StudentList()
 {
 	clearStudentList();

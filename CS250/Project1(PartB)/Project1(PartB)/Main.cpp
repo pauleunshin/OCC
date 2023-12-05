@@ -12,6 +12,7 @@
 #include "Student.h"
 #include "Course.h"
 #include "StudentList.h"
+#include "InputHandler.h"
 #include <iostream>
 
 using namespace std;
@@ -21,12 +22,14 @@ int main()
 	//Course Testing
 	Course calc1;
 	calc1.setCourseInfo("CALC", 100, 3);
-
-	Course calc2("CALC", 200, 4);
-
-	Course mech1("ENGI", 150, 2);
-	Course mech2("ENGI", 251, 4);
-	Course arts1("ARTS", 100, 3);
+	Course calc2;
+	calc2.setCourseInfo("CALC", 200, 4);
+	Course mech1;
+	mech1.setCourseInfo("ENGI", 150, 2);
+	Course mech2;
+	mech2.setCourseInfo("ENGI", 251, 4);
+	Course arts1;
+	arts1.setCourseInfo("ARTS", 100, 3);
 
 	cout << "Calculuas1 course prefix: " << calc1.getCoursePrefix() << endl;
 	cout << "Calculus2 course number: " << calc2.getCourseNumber() << endl;
@@ -56,11 +59,16 @@ int main()
 	* Student 4 should be Sheldon
 	*/
 	
-	cout << "Has Lily finished Calc100?: " << student3.isCourseCompleted("CALC", 100) <<endl;
-	cout << "Has Sheldon paid Tuition?: " << student4.isTuitionPaid() << endl;
-	cout << "How much would Sheldon pay for his tuition?: " << student4.billingAmount(400.0) << endl;
-	cout << "How many units has John taken?: " << student1.getUnitsCompleted() << endl;
-	cout << "How many courses has Scotty finished?: " << student2.getNumberOfCourses() << endl;
+	cout << "Has Lily finished Calc100?: " 
+		<< student3.isCourseCompleted("CALC", 100) <<endl;
+	cout << "Has Sheldon paid Tuition?: " 
+		<< student4.isTuitionPaid() << endl;
+	cout << "How much would Sheldon pay for his tuition?: " 
+		<< student4.billingAmount(400.0) << endl;
+	cout << "How many units has John taken?: " 
+		<< student1.getUnitsCompleted() << endl;
+	cout << "How many courses has Scotty finished?: " 
+		<< student2.getNumberOfCourses() << endl;
 	cout << endl; 
 
 	//StudentList Testing

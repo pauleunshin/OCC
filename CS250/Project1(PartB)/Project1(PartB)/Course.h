@@ -15,17 +15,17 @@
 
 class Course
 {
-
 public:
+	//Constructors
 	//Default Constructor
-	Course();
+	Course() : coursePrefix("N/A"),
+		courseNumber(0), courseUnits(0) {}
 
-	//Initializer List Constructor
-	Course(const std::string& prefix, int number, int units);
-
+	//Mutators
 	//Sets values for member variables of Course
 	void setCourseInfo(const std::string& prefix, int number, int units);
 
+	//Accessors
 	//Returns member variable coursePrefix 
 	std::string getCoursePrefix() const;
 
@@ -35,13 +35,11 @@ public:
 	//Returns member variable courseUnits
 	int getCourseUnits() const;
 
-	//MysteryFunction
-	//Its the < operator
+	//Operators
 	bool operator<(const Course& othercourse) const;
 
 	//Destructor
 	~Course() {}
-
 
 private:
 	std::string coursePrefix;

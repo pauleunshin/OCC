@@ -14,15 +14,7 @@
 
 using namespace std; 
 
-//Default Constructor
-Student::Student() : studentID(0), firstName("N/A"), lastName("N/A"),
-	numberOfCourses(0), tuitionWasPaid(false) {}
-
-Student::Student(int ID, string fName, string lName, int coursesTaken,
-	bool tuition) :
-		studentID(ID), firstName(fName), lastName(lName), 
-		numberOfCourses(coursesTaken), tuitionWasPaid(tuition) {}
-
+//Mutators
 //Copies Student Data from Paramter object
 void Student::setStudent(const Student& otherStudent)
 {
@@ -35,17 +27,19 @@ void Student::setStudent(const Student& otherStudent)
 }
 
 //Sets values for member variables of Student Object
-void Student::setStudentInfo(int newID, const string& newFirst, const string& newLast, 
-	bool paidtuition, const multimap<Course, char>& coursesTaken)
+void Student::setStudentInfo(int newID, const string& newFirst, 
+	const string& newLast, bool paidTuition, 
+	const multimap<Course, char>& coursesTaken)
 {
 	studentID = newID;
 	firstName = newFirst;
 	lastName = newLast;
-	tuitionWasPaid = paidtuition;
+	tuitionWasPaid = paidTuition;
 	numberOfCourses = static_cast<int>(coursesTaken.size());
 	coursesCompleted = coursesTaken;
 }
 
+//Accessors
 //Returns student ID
 int Student::getID() const
 {
@@ -88,20 +82,23 @@ int Student::getUnitsCompleted() const
 	return totalunits; 
 }
 
-//Returns a multimap of all courses the student has completed with letter grades
+//Returns a multimap of all courses 
+//the student has completed with letter grades
 multimap<Course, char> Student::getCoursesCompleted() const
 {
 	return coursesCompleted;
 }
 
+//Booleans
 //Returns True/False whether the student has paid their tuition
 bool Student::isTuitionPaid() const
 {
 	return tuitionWasPaid;
 }
 
-//Checks if a student has taken/completed the paramter course and returns true/false
-bool Student::isCourseCompleted(const string& prefix, int cnumber) const
+//Checks if a student has taken/completed 
+//the paramter course and returns true/false
+bool Student::isCourseCompleted(const string& prefix, int cNumber) const
 {
 	if (coursesCompleted.empty())
 	{
@@ -111,14 +108,16 @@ bool Student::isCourseCompleted(const string& prefix, int cnumber) const
 	{
 		for (auto iter : coursesCompleted)
 		{
-			if (iter.first.getCoursePrefix() == prefix && static_cast<int>(iter.first.getCourseNumber()) == cnumber)
+			if (iter.first.getCoursePrefix() == prefix 
+				&& static_cast<int>(iter.first.getCourseNumber()) == cNumber)
 				return true;
 		}
 	}
 	return false; 
 }
 
-//Calculates the current GPA of the student and returns it as a double
+//Calculations
+//Returns Student GPA
 double Student::calculateGPA() const
 {
 	double points = 0.0;
@@ -152,20 +151,21 @@ double Student::calculateGPA() const
 	return (totalunits > 0) ? (points / totalunits) : 0.0;
 }
 
-//Calculates how much the total cost of all courses taken would be
-double Student::billingAmount(double tuitionrate) const
+//Returns cost of tuition for student
+double Student::billingAmount(double tuitionRate) const
 {
-	return tuitionrate * static_cast<double>(coursesCompleted.size());
+	return tuitionRate * static_cast<double>(coursesCompleted.size());
 }
 
+//Print Statements
 //Prints the student's ID and Name
 void Student::printStudent() const
 {
 	cout << studentID << " - " << lastName << ", " << firstName << endl;
 }
 
-//Prints the student's ID, name, # of completed courses, courses taken w/grades, GPA and hours
-void Student::printStudentInfo(double tuitionrate) const
+//Prints the student's ID, name, # of completed courses,
+void Student::printStudentInfo(double tuitionRate) const
 {
 	cout << "Student Name: " << lastName << ", " << firstName << endl;
 	cout << "Student ID: " << studentID << endl;
@@ -174,12 +174,18 @@ void Student::printStudentInfo(double tuitionrate) const
 	cout << "CourseNo  Units  Grade\n";
 	for (auto iter : coursesCompleted)
 	{
-		cout << iter.first.getCoursePrefix() << " " << iter.first.getCourseNumber() << "    "
+		cout << iter.first.getCoursePrefix() << " " 
+			<< iter.first.getCourseNumber() << "    "
 			<< iter.first.getCourseUnits() << "     " << iter.second << endl;
 	}
 	cout << endl;
 	cout << "Total number of credit hours: " << getUnitsCompleted() << endl;
-	cout << "Current Term GPA: " << calculateGPA() << endl;
+	if (isTuitionPaid()) cout << "Current Term GPA: " << calculateGPA() << endl;
+	else
+	{
+		cout << "*** Grades are being held for not paying the tuition. ***\n";
+		cout << "Amount Due: $" << tuitionRate * getUnitsCompleted();
+	}
 	cout << endl;
 	for (int i = 0; i < 24; i++)
 	{

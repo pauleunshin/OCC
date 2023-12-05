@@ -17,7 +17,6 @@
 #include "Course.h"
 #include "Student.h"
 
-
 class Node
 {
 public:
@@ -27,10 +26,7 @@ public:
 	Node* getNext() const { return next; }
 	Student getStudent() const { return student; }
 	void setData(Student newStudent) { student = newStudent; }
-	void setNext(Node* newNext)
-	{
-		next = newNext;
-	}
+	void setNext(Node* newNext) { next = newNext; }
 	~Node() {}
 
 	Node* next;
@@ -40,15 +36,25 @@ public:
 class StudentList
 {
 public:
+	//Constructors
 	//Default Constructor
-	StudentList();
+	StudentList() : count(0), first(nullptr), last(nullptr) {}
 
+	//Copy Constructor
+	StudentList(const StudentList& otherList); 
+
+	//Copy Assignment Operator
+	StudentList& operator=(const StudentList& otherList);
+
+	//Mutators
 	//Add a student to the linked list 
 	void addStudent(const Student& newStudent); 
 
+	//Accessors
 	//Return how many students are in the list
 	int getNoOfStudents() const;
 
+	//Print Statements
 	//Prints the info of a student in the list
 	void printStudentByID(int searchID, double tuitionRate) const;
 
@@ -56,7 +62,8 @@ public:
 	void printStudentByName(const std::string& searchLastName) const;
 
 	//Prints the info of students enrolled in a course
-	void printStudentsByCourse(const std::string& searchCourse, int searchCourseNum) const;
+	void printStudentsByCourse(const std::string& searchCourse,
+		int searchCourseNum) const;
 
 	//Prints the info of all students in linked list
 	void printAllStudents(double tuitionRate) const;
@@ -70,8 +77,20 @@ public:
 private:
 	int count; 
 	Node* first;
-	Node* last; 
-	
+	Node* last;
+
+	//Creates nodes to copy Parameter Object of larger size
+	StudentList& copyCallingObjIsEmpty(const StudentList& otherList);
+
+	//Copies Paramater Object of same size
+	StudentList& copyObjectsSameLength(const StudentList& otherList);
+
+	//Creates nodes to copy Parameter Object of larger size
+	StudentList& copyCallingObjLonger(const StudentList& otherList);
+
+	//Deletes nodes to copy Parameter Object of smaller size
+	StudentList& copyCallingObjShorter(const StudentList& otherList);
+
 };
 
 #endif
