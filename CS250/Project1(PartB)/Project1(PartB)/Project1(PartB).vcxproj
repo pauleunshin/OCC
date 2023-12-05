@@ -127,23 +127,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\..\..\Downloads\project_c_files\project_c_files\InputHandler.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\Downloads\project_c_files\project_c_files\OutputHandler.h" />
     <ClInclude Include="Course.h" />
+    <ClInclude Include="InputHandler.h" />
+    <ClInclude Include="OutputHandler.h" />
     <ClInclude Include="Student.h" />
     <ClInclude Include="StudentList.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\..\..\Downloads\project_c_files\project_c_files\InputHandler.cpp" />
-    <ClCompile Include="..\..\..\..\..\..\..\Downloads\project_c_files\project_c_files\OutputHandler.cpp" />
     <ClCompile Include="Course.cpp" />
+    <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="OutputHandler.cpp" />
     <ClCompile Include="Student.cpp" />
     <ClCompile Include="StudentList.cpp" />
     <ClCompile Include="StudentListCopyFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\..\..\..\..\..\Downloads\project_c_files\project_c_files\student_data.txt" />
+    <Text Include="student_data.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
