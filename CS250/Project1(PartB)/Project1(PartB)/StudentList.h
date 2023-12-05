@@ -26,7 +26,7 @@ public:
 		: student(newStudent), next(newNext) {}
 	Node* getNext() const { return next; }
 	Student getStudent() const { return student; }
-	void setData(Student newStudent) { student = newStudent; }
+	void setStudent(Student newStudent) { student = newStudent; }
 	void setNext(Node* newNext) { next = newNext; }
 	~Node() {}
 
@@ -45,7 +45,7 @@ public:
 	StudentList(const StudentList& otherList); 
 
 	////Copy Assignment Operator
-	//StudentList& operator=(const StudentList& otherList);
+	StudentList& operator=(const StudentList& otherList);
 
 	//Mutators
 	//Add a student to the linked list 
@@ -72,6 +72,9 @@ public:
 	//Prints students to file
 	void printStudentsToFile(std::ostream& outputFile, double tuitionRate) const;
 
+	//Print students on Hold
+	void printStudentsOnHold(double tuitionRate) const;
+
 	//Removes all students in the list
 	void clearStudentList();
 
@@ -83,17 +86,17 @@ private:
 	Node* first;
 	Node* last;
 
-	////Creates nodes to copy Parameter Object of larger size
-	//StudentList& copyCallingObjIsEmpty(const StudentList& otherList);
+	//Creates nodes to copy Parameter Object of larger size
+	void copyCallingObjIsEmpty(const StudentList& otherList);
 
-	////Copies Paramater Object of same size
-	//StudentList& copyObjectsSameLength(const StudentList& otherList);
+	//Copies Paramater Object of same size
+	void copyObjectsSameLength(const StudentList& otherList);
 
-	////Creates nodes to copy Parameter Object of larger size
-	//StudentList& copyCallingObjLonger(const StudentList& otherList);
+	//Creates nodes to copy Parameter Object of larger size
+	void copyCallingObjLonger(const StudentList& otherList);
 
-	////Deletes nodes to copy Parameter Object of smaller size
-	//StudentList& copyCallingObjShorter(const StudentList& otherList);
+	//Deletes nodes to copy Parameter Object of smaller size
+	void copyCallingObjShorter(const StudentList& otherList);
 
 };
 

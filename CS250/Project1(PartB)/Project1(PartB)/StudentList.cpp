@@ -85,7 +85,7 @@ void StudentList::printStudentByName(const string& searchLastName) const
 	{
 		cout << "No student with last name " << searchLastName << " is on the list.\n";
 	}
-
+	cout << endl; 
 }
 
 //Prints the info of students enrolled in a course
@@ -110,6 +110,7 @@ void StudentList::printStudentsByCourse(const string& searchCourse,
 		cout << "No students enrolled in " << searchCourse << " " 
 			<< searchCourseNum << endl;
 	}
+	cout << endl;
 }
 
 //Prints the info of all students in linked list
@@ -121,7 +122,7 @@ void StudentList::printAllStudents(double tuitionRate) const
 	{
 		current->getStudent().printStudentInfo(tuitionRate);
 		current = current->getNext();
-	}
+	} 
 }
 
 //Prints to specified teext file with tuitionRate
@@ -154,15 +155,15 @@ void StudentList::printStudentsToFile(ostream& outputFile, double tuitionRate) c
 
 		if (studentData.isTuitionPaid())
 		{
-			outputFile.precision(3);
-			outputFile << "Current Term GPA: "
+			outputFile.precision(2);
+			outputFile << "Current Term GPA: " << fixed
 				<< studentData.calculateGPA() << endl;
 		}
 		else
 		{
-			outputFile.precision(3);
+			outputFile.precision(2);
 			outputFile << "*** Grades are being held for not paying the tuition. ***\n";
-			outputFile << "Amount Due: $" << tuitionRate * static_cast<double>(studentData.getUnitsCompleted());
+			outputFile << "Amount Due: $" << fixed << studentData.billingAmount(tuitionRate);
 			outputFile << endl;
 		}
 
@@ -177,6 +178,33 @@ void StudentList::printStudentsToFile(ostream& outputFile, double tuitionRate) c
 		outputFile << endl;
 		current = current->getNext();
 	}
+}
+
+//Print students on Hold
+void StudentList::printStudentsOnHold(double tuitionRate) const
+{
+	Node* current = first;
+	bool found = false;
+	
+	while (current != nullptr)
+	{
+		Student studentData = current->getStudent();
+		if (!studentData.isTuitionPaid())
+		{
+			studentData.printStudent();
+			cout.precision(2);
+			cout << "    Amount Due: $" << fixed << tuitionRate * studentData.getUnitsCompleted();
+			cout << endl;
+			found = true;
+		}
+		current = current->getNext();
+	}
+
+	if (!found)
+	{
+		cout << "There are no students on hold.\n";
+	}
+	cout << endl;
 }
 
 //Removes all students in the list

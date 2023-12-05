@@ -146,7 +146,7 @@ double Student::calculateGPA() const
 		}
 
 	}
-	cout.precision(3);
+	cout.precision(2);
 
 	return (totalunits > 0) ? (points / totalunits) : 0.0;
 }
@@ -154,7 +154,7 @@ double Student::calculateGPA() const
 //Returns cost of tuition for student
 double Student::billingAmount(double tuitionRate) const
 {
-	return tuitionRate * static_cast<double>(coursesCompleted.size());
+	return tuitionRate * coursesCompleted.size();
 }
 
 //Print Statements
@@ -180,12 +180,19 @@ void Student::printStudentInfo(double tuitionRate) const
 	}
 	cout << endl;
 	cout << "Total number of credit hours: " << getUnitsCompleted() << endl;
-	if (isTuitionPaid()) cout << "Current Term GPA: " << calculateGPA() << endl;
+	if (isTuitionPaid())
+	{
+		cout.precision(2);
+		cout << "Current Term GPA: " << fixed
+			<< calculateGPA() << endl;
+	}
 	else
 	{
-		cout.precision(3);
+		cout.precision(2);
 		cout << "*** Grades are being held for not paying the tuition. ***\n";
-		cout << "Amount Due: $" << tuitionRate * getUnitsCompleted();
+		cout << "Amount Due: $" << fixed
+			<< billingAmount(tuitionRate);
+		cout << endl;
 	}
 	cout << endl;
 	for (int i = 0; i < 24; i++)
