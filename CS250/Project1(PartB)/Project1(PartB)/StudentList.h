@@ -14,6 +14,7 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include <fstream>
 #include "Course.h"
 #include "Student.h"
 
@@ -43,8 +44,8 @@ public:
 	//Copy Constructor
 	StudentList(const StudentList& otherList); 
 
-	//Copy Assignment Operator
-	StudentList& operator=(const StudentList& otherList);
+	////Copy Assignment Operator
+	//StudentList& operator=(const StudentList& otherList);
 
 	//Mutators
 	//Add a student to the linked list 
@@ -68,6 +69,9 @@ public:
 	//Prints the info of all students in linked list
 	void printAllStudents(double tuitionRate) const;
 
+	//Prints students to file
+	void printStudentsToFile(std::ostream& outputFile, double tuitionRate) const;
+
 	//Removes all students in the list
 	void clearStudentList();
 
@@ -79,17 +83,17 @@ private:
 	Node* first;
 	Node* last;
 
-	//Creates nodes to copy Parameter Object of larger size
-	StudentList& copyCallingObjIsEmpty(const StudentList& otherList);
+	////Creates nodes to copy Parameter Object of larger size
+	//StudentList& copyCallingObjIsEmpty(const StudentList& otherList);
 
-	//Copies Paramater Object of same size
-	StudentList& copyObjectsSameLength(const StudentList& otherList);
+	////Copies Paramater Object of same size
+	//StudentList& copyObjectsSameLength(const StudentList& otherList);
 
-	//Creates nodes to copy Parameter Object of larger size
-	StudentList& copyCallingObjLonger(const StudentList& otherList);
+	////Creates nodes to copy Parameter Object of larger size
+	//StudentList& copyCallingObjLonger(const StudentList& otherList);
 
-	//Deletes nodes to copy Parameter Object of smaller size
-	StudentList& copyCallingObjShorter(const StudentList& otherList);
+	////Deletes nodes to copy Parameter Object of smaller size
+	//StudentList& copyCallingObjShorter(const StudentList& otherList);
 
 };
 

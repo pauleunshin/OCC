@@ -12,6 +12,7 @@
 #include "Course.h"
 #include "StudentList.h"
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -119,6 +120,61 @@ void StudentList::printAllStudents(double tuitionRate) const
 	while (current != nullptr)
 	{
 		current->getStudent().printStudentInfo(tuitionRate);
+		current = current->getNext();
+	}
+}
+
+//Prints to specified teext file with tuitionRate
+void StudentList::printStudentsToFile(ostream& outputFile, double tuitionRate) const
+{
+	Node* current = first;
+
+	while (current != nullptr)
+	{
+		Student studentData = current->getStudent();
+		outputFile << "Student Name: " << studentData.getLastName() 
+			<< ", " << studentData.getFirstName() << endl;
+		outputFile << "Student ID: " << studentData.getID() << endl;
+		outputFile << "Number of Courses completed: " 
+			<< studentData.getNumberOfCourses() << endl;
+		outputFile << endl;
+		outputFile << "CourseNo  Units  Grade\n";
+
+		for (auto iter : studentData.getCoursesCompleted())
+		{
+			outputFile << iter.first.getCoursePrefix() << " "
+				<< iter.first.getCourseNumber() << "    "
+				<< iter.first.getCourseUnits() << "     " << iter.second 
+				<< endl;
+		}
+
+		outputFile << endl;
+		outputFile << "Total number of credit hours: " 
+			<< studentData.getUnitsCompleted() << endl;
+
+		if (studentData.isTuitionPaid())
+		{
+			outputFile.precision(3);
+			outputFile << "Current Term GPA: "
+				<< studentData.calculateGPA() << endl;
+		}
+		else
+		{
+			outputFile.precision(3);
+			outputFile << "*** Grades are being held for not paying the tuition. ***\n";
+			outputFile << "Amount Due: $" << tuitionRate * static_cast<double>(studentData.getUnitsCompleted());
+			outputFile << endl;
+		}
+
+		outputFile << endl;
+
+		for (int i = 0; i < 24; i++)
+		{
+			outputFile << "-*";
+		}
+
+		outputFile << "-" << endl;
+		outputFile << endl;
 		current = current->getNext();
 	}
 }

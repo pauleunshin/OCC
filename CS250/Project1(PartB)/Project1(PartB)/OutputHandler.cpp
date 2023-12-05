@@ -2,6 +2,7 @@
 
 #include "Course.h"
 #include "Student.h"
+#include "StudentList.h"
 
 #include <iostream>
 #include <fstream>

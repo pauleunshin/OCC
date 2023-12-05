@@ -183,6 +183,7 @@ void Student::printStudentInfo(double tuitionRate) const
 	if (isTuitionPaid()) cout << "Current Term GPA: " << calculateGPA() << endl;
 	else
 	{
+		cout.precision(3);
 		cout << "*** Grades are being held for not paying the tuition. ***\n";
 		cout << "Amount Due: $" << tuitionRate * getUnitsCompleted();
 	}
