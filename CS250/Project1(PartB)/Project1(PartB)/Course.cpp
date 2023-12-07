@@ -9,7 +9,9 @@
 */
 
 #include "Course.h"
+
 #include <iostream>
+
 using namespace std;
 
 //Mutators
@@ -27,13 +29,11 @@ string Course::getCoursePrefix() const
 {
 	return coursePrefix;
 }
-
 //Returns member variable courseNumber
 int Course::getCourseNumber() const
 {
 	return courseNumber;
 }
-
 //Returns member variable courseUnits
 int Course::getCourseUnits() const
 {

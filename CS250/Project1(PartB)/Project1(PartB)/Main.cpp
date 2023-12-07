@@ -8,7 +8,6 @@
 	Main File
 */
 
-
 #include "StudentList.h"
 #include "InputHandler.h"
 #include "OutputHandler.h"
@@ -17,7 +16,19 @@
 #include <fstream>
 
 using namespace std;
-const string studentData ("student_data.txt");
+const string STUDENTDATA ("student_data.txt");
+
+void displayMenu();
+void processChoice(StudentList newList, double tuitionRate);
+
+int main()
+{
+	StudentList newStudents;
+	double tuitionRate = 0.0;
+	readStudentData(STUDENTDATA, newStudents, tuitionRate);
+	processChoice(newStudents, tuitionRate);
+	return 0;
+}
 
 void displayMenu()
 {
@@ -29,7 +40,8 @@ void displayMenu()
 	cout << "    4: Print students by course\n";
 	cout << "    5: Print students on hold\n";
 	cout << "    6: Print students to file\n";
-	cout << "    7: To exit\n\n";
+	cout << "    7: Search by ID\n";
+	cout << "    8: To exit\n\n";
 }
 
 void processChoice(StudentList newList, double tuitionRate)
@@ -53,11 +65,11 @@ void processChoice(StudentList newList, double tuitionRate)
 		}
 		case 2:
 		{
-			int newID;
+			int searchID;
 			cout << "Please enter student's ID: ";
-			cin >> newID;
+			cin >> searchID;
 			cout << endl;
-			newList.printStudentByID(newID, tuitionRate);
+			newList.printStudentByID(searchID, tuitionRate);
 			system("Pause");
 			break;
 		}
@@ -99,6 +111,20 @@ void processChoice(StudentList newList, double tuitionRate)
 		}
 		case 7:
 		{
+			int searchID;
+			cout << "Please enter the student's ID: ";
+			cin >> searchID;
+			//Ask for First Name
+			//Ask for Last Name
+			//Match? Continue
+
+
+			//No Match Exit
+			//No Student found with ID...Name....
+
+		}
+		case 8:
+		{
 			cout << "Thank you for using the OCC Gradebook. Good-Bye!\n\n";
 			system("Pause");
 			exit(1);
@@ -113,18 +139,4 @@ void processChoice(StudentList newList, double tuitionRate)
 		}
 	}
 }
-
-int main()
-{
-	StudentList newStudents;
-	double tuitionRate = 0.0;
-	readStudentData(studentData, newStudents, tuitionRate);
-	//newStudents.printAllStudents(tuitionRate);
-	//printAllStudentsToFile(newStudents, tuitionRate);
-	//newStudents.printStudentsOnHold(25.0);
-	processChoice(newStudents, tuitionRate);
-	return 0;
-}
-
-
 	

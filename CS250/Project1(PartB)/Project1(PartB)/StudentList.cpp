@@ -8,9 +8,10 @@
 	StudentList Source-Code File
 */
 
-#include "Student.h"
 #include "Course.h"
+#include "Student.h"
 #include "StudentList.h"
+
 #include <iostream>
 #include <fstream>
 
@@ -65,7 +66,6 @@ void StudentList::printStudentByID(int searchID, double tuitionRate) const
 		cout << "No students with ID " << searchID << " found in the list.\n";
 	}
 }
-
 //Prints the info of a student by their name
 void StudentList::printStudentByName(const string& searchLastName) const
 {
@@ -87,7 +87,6 @@ void StudentList::printStudentByName(const string& searchLastName) const
 	}
 	cout << endl; 
 }
-
 //Prints the info of students enrolled in a course
 void StudentList::printStudentsByCourse(const string& searchCourse, 
 	int searchCourseNum) const
@@ -112,7 +111,6 @@ void StudentList::printStudentsByCourse(const string& searchCourse,
 	}
 	cout << endl;
 }
-
 //Prints the info of all students in linked list
 void StudentList::printAllStudents(double tuitionRate) const
 {
@@ -124,7 +122,6 @@ void StudentList::printAllStudents(double tuitionRate) const
 		current = current->getNext();
 	} 
 }
-
 //Prints to specified teext file with tuitionRate
 void StudentList::printStudentsToFile(ostream& outputFile, double tuitionRate) const
 {
@@ -179,7 +176,6 @@ void StudentList::printStudentsToFile(ostream& outputFile, double tuitionRate) c
 		current = current->getNext();
 	}
 }
-
 //Print students on Hold
 void StudentList::printStudentsOnHold(double tuitionRate) const
 {

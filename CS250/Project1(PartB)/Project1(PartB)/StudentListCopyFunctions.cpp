@@ -8,9 +8,10 @@
 	StudentListCopy Functions Source-Code File
 */
 
+#include "StudentList.h"
 
 #include <iostream>
-#include "StudentList.h"
+
 using namespace std;
 
 //Copy Constructor
@@ -21,7 +22,7 @@ StudentList::StudentList(const StudentList& otherList) : StudentList()
 	last = otherList.last; 
 }
 
-//copy assignment operator
+//Copy assignment operator
 StudentList& StudentList::operator=(const StudentList& otherList)
 {
 	if (this == &otherList)

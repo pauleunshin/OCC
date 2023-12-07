@@ -11,8 +11,6 @@
 #ifndef COURSE_H
 #define COURSE_H
 
-#include <iostream>
-
 class Course
 {
 public:
@@ -28,10 +26,8 @@ public:
 	//Accessors
 	//Returns member variable coursePrefix 
 	std::string getCoursePrefix() const;
-
 	//Returns member variable courseNumber
 	int getCourseNumber() const;
-
 	//Returns member variable courseUnits
 	int getCourseUnits() const;
 
