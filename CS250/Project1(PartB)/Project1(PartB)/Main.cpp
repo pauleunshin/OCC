@@ -139,7 +139,8 @@ void processChoice(StudentList& newList, double tuitionRate)
 				{
 					cin.clear();
 					cin.ignore(numeric_limits<streamsize>::max(), '\n');
-					cout << "Only numerical ID's accepted.";
+					cout << "Only numerical ID's accepted.\n\n";
+					failure = true; 
 				}
 
 				if (!failure)

@@ -14,6 +14,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <limits>
 
 using namespace std;
 
@@ -42,22 +43,33 @@ void StudentList::addCourseToStudent(Node* studentNode)
 	int cNumber;
 	int cUnits;
 	char grade;
+	bool failure = false;
 
 	cout << "Please enter the 4 letter course prefix: ";
 	cin >> cPrefix;
 	cout << "Please enter the 3 digit course number: ";
 	cin >> cNumber;
-	cout << "What grade was received?: ";
-	cin >> grade;
-	cUnits = findCourseUnits(cPrefix, cNumber);
-
-	if (cUnits > 0)
+	while (cin.fail())
 	{
-		Course newCourse(cPrefix, cNumber, cUnits);
-		Student temp = studentNode->getStudent();
-		temp.addCourse(newCourse, grade);
-		studentNode->setStudent(temp);
-		cout << "Successfully added " << cPrefix << " " << cNumber << endl;
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		cout << "Please enter a number for the course number.\n";
+		failure = true; 
+	}
+	if (!failure)
+	{
+		cout << "What grade was received?: ";
+		cin >> grade;
+		cUnits = findCourseUnits(cPrefix, cNumber);
+
+		if (cUnits > 0)
+		{
+			Course newCourse(cPrefix, cNumber, cUnits);
+			Student temp = studentNode->getStudent();
+			temp.addCourse(newCourse, grade);
+			studentNode->setStudent(temp);
+			cout << "Successfully added " << cPrefix << " " << cNumber << endl;
+		}
 	}
 	cout << endl;
 }
