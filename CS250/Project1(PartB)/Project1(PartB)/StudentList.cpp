@@ -203,6 +203,47 @@ void StudentList::printStudentsOnHold(double tuitionRate) const
 	cout << endl;
 }
 
+//Boolean Statements
+//Checks if student is in current studentlist
+bool StudentList::searchID(Node* finder) const
+{
+	finder = first;
+	bool found = false;
+	int studentID;
+	string fName;
+	string lName;
+
+	cout << "Please enter the six digit student ID: ";
+	cin >> studentID;
+
+	while (finder != nullptr && !found)
+	{
+		if (studentID == finder->getStudent().getID())
+		{
+			cout << "Please enter the last name: ";
+			cin >> lName;
+			cout << "Please enter the first anem: ";
+			cin >> fName;
+			if (lName == finder->getStudent().getLastName() &&
+				fName == finder->getStudent().getFirstName())
+			{
+				return true;
+			}
+			else
+			{
+				cout << "Incorrect name. Please try again";
+				return false;
+			}
+		}
+		finder = finder->getNext();
+	}
+	if (!found)
+	{
+		cout << "No students with ID " << studentID << " found in the list.\n";
+		return false;
+	}
+}
+
 //Removes all students in the list
 void StudentList::clearStudentList()
 {
