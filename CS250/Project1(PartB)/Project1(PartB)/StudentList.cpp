@@ -35,6 +35,31 @@ void StudentList::addStudent(const Student& newStudent)
 	}
 	count++;
 }
+//Add new course to student in list
+void StudentList::addCourseToStudent(Node* studentNode)
+{
+	string cPrefix;
+	int cNumber;
+	int cUnits;
+	char grade;
+
+	cout << "Please enter the 4 letter course prefix: ";
+	cin >> cPrefix;
+	cout << "Please enter the 3 digit course number: ";
+	cin >> cNumber;
+	cout << "What grade was received?: ";
+	cin >> grade;
+	cUnits = findCourseUnits(cPrefix, cNumber);
+
+	if (cUnits > 0)
+	{
+		Course newCourse(cPrefix, cNumber, cUnits);
+		Student temp = studentNode->getStudent();
+		temp.addCourse(newCourse, grade);
+		studentNode->setStudent(temp);
+	}
+	cout << endl;
+}
 
 //Accessors
 //Return how many students are in the list
@@ -42,7 +67,59 @@ int StudentList::getNoOfStudents() const
 {
 	return count; 
 }
+//Checks Course Units
+int StudentList::findCourseUnits(const string& cPrefix,
+	int cNumber) const
+{
+	Node* current = first;
 
+	while (current != nullptr)
+	{
+		Student tempStudent = current->getStudent();
+
+		for (auto iter : tempStudent.getCoursesCompleted())
+		{
+			if (iter.first.getCoursePrefix() == cPrefix
+				&& static_cast<int>(iter.first.getCourseNumber()) == cNumber)
+			{
+				return iter.first.getCourseUnits();
+			}
+		}
+		current = current->getNext();
+	}
+	cout << "Course does not exist or match. Please try again.\n\n";
+	return 0;
+}
+//Returns pointer to Searched Student
+Node* StudentList::getStudent(int searchID)
+{
+	Node* current;
+	current = first;
+
+	while (current != nullptr)
+	{
+		if (searchID == current->getStudent().getID())
+		{
+			string lName;
+			string fName;
+
+			cout << "Please enter the last name: ";
+			cin >> lName;
+			cout << "Please enter the first name: ";
+			cin >> fName;
+
+			if (lName == current->getStudent().getLastName() &&
+				fName == current->getStudent().getFirstName())
+			{
+				return current;
+			}
+			else cout << "Incorrect name. Please try again.\n\n";
+		}
+		current = current->getNext();
+	}
+	cout << "No students with ID " << searchID << " found in the list.\n\n";
+	return nullptr;
+}
 
 //Print Statements
 //Prints the info of a student in the list
@@ -189,7 +266,8 @@ void StudentList::printStudentsOnHold(double tuitionRate) const
 		{
 			studentData.printStudent();
 			cout.precision(2);
-			cout << "    Amount Due: $" << fixed << tuitionRate * studentData.getUnitsCompleted();
+			cout << "    Amount Due: $" << fixed 
+				<< studentData.billingAmount(tuitionRate);
 			cout << endl;
 			found = true;
 		}
@@ -201,47 +279,6 @@ void StudentList::printStudentsOnHold(double tuitionRate) const
 		cout << "There are no students on hold.\n";
 	}
 	cout << endl;
-}
-
-//Boolean Statements
-//Checks if student is in current studentlist
-bool StudentList::searchID(Node* finder) const
-{
-	finder = first;
-	bool found = false;
-	int studentID;
-	string fName;
-	string lName;
-
-	cout << "Please enter the six digit student ID: ";
-	cin >> studentID;
-
-	while (finder != nullptr && !found)
-	{
-		if (studentID == finder->getStudent().getID())
-		{
-			cout << "Please enter the last name: ";
-			cin >> lName;
-			cout << "Please enter the first anem: ";
-			cin >> fName;
-			if (lName == finder->getStudent().getLastName() &&
-				fName == finder->getStudent().getFirstName())
-			{
-				return true;
-			}
-			else
-			{
-				cout << "Incorrect name. Please try again";
-				return false;
-			}
-		}
-		finder = finder->getNext();
-	}
-	if (!found)
-	{
-		cout << "No students with ID " << studentID << " found in the list.\n";
-		return false;
-	}
 }
 
 //Removes all students in the list

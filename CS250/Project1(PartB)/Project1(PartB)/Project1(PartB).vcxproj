@@ -24,6 +24,7 @@
     <ProjectGuid>{8cf53be4-ac26-4057-aeca-7e41b8d9b588}</ProjectGuid>
     <RootNamespace>Project1PartB</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>GradeCalculator</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

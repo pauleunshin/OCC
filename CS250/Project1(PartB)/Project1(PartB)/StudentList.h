@@ -48,11 +48,18 @@ public:
 
 	//Mutators
 	//Add a student to the linked list 
-	void addStudent(const Student& newStudent); 
+	void addStudent(const Student& newStudent);
+	//Add new course to student in list
+	void addCourseToStudent(Node* studentNode);
 
 	//Accessors
 	//Return how many students are in the list
 	int getNoOfStudents() const;
+	//Checks Course units
+	int findCourseUnits(const std::string& searchCourse,
+		int searchCourseNum) const;
+	//Returns pointer to searched student
+	Node* getStudent(int searchID);
 
 	//Print Statements
 	//Prints the info of a student in the list
@@ -76,7 +83,8 @@ public:
 	~StudentList();
 
 private:
-	int count; 
+	int count;
+
 	Node* first;
 	Node* last;
 

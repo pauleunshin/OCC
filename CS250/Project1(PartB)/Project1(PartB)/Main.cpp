@@ -14,12 +14,13 @@
 
 #include <iostream>
 #include <fstream>
+#include <limits>
 
 using namespace std;
 const string STUDENTDATA ("student_data.txt");
 
 void displayMenu();
-void processChoice(StudentList newList, double tuitionRate);
+void processChoice(StudentList& newList, double tuitionRate);
 
 int main()
 {
@@ -40,102 +41,112 @@ void displayMenu()
 	cout << "    4: Print students by course\n";
 	cout << "    5: Print students on hold\n";
 	cout << "    6: Print students to file\n";
-	cout << "    7: Search by ID\n";
+	cout << "    7: Add new course to Student\n";
 	cout << "    8: To exit\n\n";
 }
 
-void processChoice(StudentList newList, double tuitionRate)
+void processChoice(StudentList& newList, double tuitionRate)
 {
-	int choice;
-	choice = 0;
+	
+	bool shutdown = false;
 
-	while (choice != 7)
+	while (!shutdown)
 	{
+		int choice;
 		displayMenu();
 		cout << "Enter your choice: ";
 		cin >> choice;
+		while (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "Please enter a number.";
+		}
 		cout << endl;
 		switch (choice)
-		{
-		case 1:
-		{
-			newList.printAllStudents(tuitionRate);
-			system("Pause");
-			break;
-		}
-		case 2:
-		{
-			int searchID;
-			cout << "Please enter student's ID: ";
-			cin >> searchID;
-			cout << endl;
-			newList.printStudentByID(searchID, tuitionRate);
-			system("Pause");
-			break;
-		}
-		case 3:
-		{
-			string lastName;
-			cout << "Please enter the student's last name: ";
-			cin >> lastName;
-			cout << endl;
-			newList.printStudentByName(lastName);
-			system("Pause");
-			break;
-		}
-		case 4:
-		{
-			string cPrefix;
-			int cNumber;
-			cout << "Please enter the course prefix: ";
-			cin >> cPrefix;
-			cout << "Please enter the course number: ";
-			cin >> cNumber;
-			cout << endl;
-			newList.printStudentsByCourse(cPrefix, cNumber);
-			system("Pause");
-			break;
-		}
-		case 5:
-		{
-			newList.printStudentsOnHold(tuitionRate);
-			system("Pause");
-			break;
-		}
-		case 6:
-		{
-			printAllStudentsToFile(newList, tuitionRate);
-			cout << endl;
-			system("Pause");
-			break;
-		}
-		case 7:
-		{
-			int searchID;
-			cout << "Please enter the student's ID: ";
-			cin >> searchID;
-			//Ask for First Name
-			//Ask for Last Name
-			//Match? Continue
+			{
+			case 1:
+			{
+				newList.printAllStudents(tuitionRate);
+				system("Pause");
+				break;
+			}
+			case 2:
+			{
+				int searchID;
+				cout << "Please enter student's ID: ";
+				cin >> searchID;
+				cout << endl;
+				newList.printStudentByID(searchID, tuitionRate);
+				system("Pause");
+				break;
+			}
+			case 3:
+			{
+				string lastName;
+				cout << "Please enter the student's last name: ";
+				cin >> lastName;
+				cout << endl;
+				newList.printStudentByName(lastName);
+				system("Pause");
+				break;
+			}
+			case 4:
+			{
+				string cPrefix;
+				int cNumber;
+				cout << "Please enter the course prefix: ";
+				cin >> cPrefix;
+				cout << "Please enter the course number: ";
+				cin >> cNumber;
+				cout << endl;
+				newList.printStudentsByCourse(cPrefix, cNumber);
+				system("Pause");
+				break;
+			}
+			case 5:
+			{
+				newList.printStudentsOnHold(tuitionRate);
+				system("Pause");
+				break;
+			}
+			case 6:
+			{
+				printAllStudentsToFile(newList, tuitionRate);
+				cout << endl;
+				system("Pause");
+				break;
+			}
+			case 7:
+			{
+				int studentID;
+				Node* studentNode;
 
+				cout << "Please enter the six digit student ID: ";
+				cin >> studentID;
 
-			//No Match Exit
-			//No Student found with ID...Name....
+				studentNode = newList.getStudent(studentID);
 
-		}
-		case 8:
-		{
-			cout << "Thank you for using the OCC Gradebook. Good-Bye!\n\n";
-			system("Pause");
-			exit(1);
-		}
-		default:
-		{
-			cout << "Sorry. That is not a selection.";
-			cout << endl << endl;
-			system("Pause");
-			break;
-		}
+				if (studentNode != nullptr)
+				{
+					newList.addCourseToStudent(studentNode);
+				}
+				break;
+			}
+			case 8:
+			{
+				cout << "Thank you for using the OCC Gradebook. Good-Bye!\n\n";
+				shutdown = true;
+				system("Pause");
+				exit(1);
+			}
+			default:
+			{
+				cout << "Sorry. That is not a selection.";
+				cout << endl << endl;
+				cin.clear();
+				system("Pause");
+			}
 		}
 	}
 }

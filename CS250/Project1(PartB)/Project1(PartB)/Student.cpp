@@ -38,6 +38,11 @@ void Student::setStudentInfo(int newID, const string& newFirst,
 	numberOfCourses = static_cast<int>(coursesTaken.size());
 	coursesCompleted = coursesTaken;
 }
+void Student::addCourse(const Course& newCourse, const char newGrade)
+{
+	coursesCompleted.insert({ newCourse, newGrade });
+	numberOfCourses++;
+}
 
 //Accessors
 //Returns student ID
@@ -78,7 +83,7 @@ int Student::getUnitsCompleted() const
 }
 //Returns a multimap of all courses 
 //the student has completed with letter grades
-multimap<Course, char> Student::getCoursesCompleted() const
+multimap<Course, char> Student::getCoursesCompleted()
 {
 	return coursesCompleted;
 }

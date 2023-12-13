@@ -31,6 +31,8 @@ public:
 	void setStudentInfo(int newID, const std::string& newFirst, 
 		const std::string& newLast,	bool paidtuition, 
 		const std::multimap<Course, char>& coursesTaken);
+	//Adds a course to the student
+	void addCourse(const Course& newCourse, const char newGrade);
 
 	//Accessors
 	//Returns student ID
@@ -47,7 +49,7 @@ public:
 	int getUnitsCompleted() const;
 	//Returns a multimap of all courses 
 	//the student has completed with letter grades
-	std::multimap<Course,char> getCoursesCompleted() const;
+	std::multimap<Course,char> getCoursesCompleted();
 
 	//Booleans
 	//Returns True/False whether the student has paid their tuition

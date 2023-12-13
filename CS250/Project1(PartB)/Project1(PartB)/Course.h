@@ -11,6 +11,8 @@
 #ifndef COURSE_H
 #define COURSE_H
 
+#include <iostream>
+
 class Course
 {
 public:
@@ -18,6 +20,9 @@ public:
 	//Default Constructor
 	Course() : coursePrefix("N/A"),
 		courseNumber(0), courseUnits(0) {}
+	//Overloaded Constructor
+	Course(std::string prefix, int number, int units) :
+		coursePrefix(prefix), courseNumber(number), courseUnits(units) {}
 
 	//Mutators
 	//Sets values for member variables of Course
