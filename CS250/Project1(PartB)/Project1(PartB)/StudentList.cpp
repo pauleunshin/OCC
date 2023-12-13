@@ -57,6 +57,7 @@ void StudentList::addCourseToStudent(Node* studentNode)
 		Student temp = studentNode->getStudent();
 		temp.addCourse(newCourse, grade);
 		studentNode->setStudent(temp);
+		cout << "Successfully added " << cPrefix << " " << cNumber << endl;
 	}
 	cout << endl;
 }

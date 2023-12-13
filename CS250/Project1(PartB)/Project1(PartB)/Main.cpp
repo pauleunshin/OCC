@@ -36,12 +36,12 @@ void displayMenu()
 	cout << "*** MAIN MENU ***\n\n";
 	cout << "Select one of the following: \n\n";
 	cout << "    1: Print all students\n";
-	cout << "    2: Print Student information\n";
+	cout << "    2: Print student information\n";
 	cout << "    3: Search student by last name\n";
 	cout << "    4: Print students by course\n";
 	cout << "    5: Print students on hold\n";
 	cout << "    6: Print students to file\n";
-	cout << "    7: Add new course to Student\n";
+	cout << "    7: Add new course to student\n";
 	cout << "    8: To exit\n\n";
 }
 
@@ -53,16 +53,11 @@ void processChoice(StudentList& newList, double tuitionRate)
 	while (!shutdown)
 	{
 		int choice;
+		bool failure = false;
 		displayMenu();
+
 		cout << "Enter your choice: ";
 		cin >> choice;
-		while (cin.fail())
-		{
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout << "Please enter a number.";
-		}
-		cout << endl;
 		switch (choice)
 			{
 			case 1:
@@ -74,10 +69,18 @@ void processChoice(StudentList& newList, double tuitionRate)
 			case 2:
 			{
 				int searchID;
+
 				cout << "Please enter student's ID: ";
 				cin >> searchID;
+				while (cin.fail())
+				{
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+					cout << "Only numerical ID's accepted\n";
+					failure = true;
+				}
 				cout << endl;
-				newList.printStudentByID(searchID, tuitionRate);
+				if(!failure) newList.printStudentByID(searchID, tuitionRate);
 				system("Pause");
 				break;
 			}
@@ -95,12 +98,21 @@ void processChoice(StudentList& newList, double tuitionRate)
 			{
 				string cPrefix;
 				int cNumber;
+
 				cout << "Please enter the course prefix: ";
 				cin >> cPrefix;
 				cout << "Please enter the course number: ";
 				cin >> cNumber;
+				while (cin.fail())
+				{
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+					cout << "Please enter a number for the course number.\n";
+					failure = true;
+				}
 				cout << endl;
-				newList.printStudentsByCourse(cPrefix, cNumber);
+
+				if (!failure) newList.printStudentsByCourse(cPrefix, cNumber);
 				system("Pause");
 				break;
 			}
@@ -120,17 +132,27 @@ void processChoice(StudentList& newList, double tuitionRate)
 			case 7:
 			{
 				int studentID;
-				Node* studentNode;
 
-				cout << "Please enter the six digit student ID: ";
+				cout << "Please enter a six digit student ID: ";
 				cin >> studentID;
-
-				studentNode = newList.getStudent(studentID);
-
-				if (studentNode != nullptr)
+				while (cin.fail())
 				{
-					newList.addCourseToStudent(studentNode);
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+					cout << "Only numerical ID's accepted.";
 				}
+
+				if (!failure)
+				{
+					Node* studentNode;
+					studentNode = newList.getStudent(studentID);
+
+					if (studentNode != nullptr)
+					{
+						newList.addCourseToStudent(studentNode);
+					}
+				}
+				system("Pause");
 				break;
 			}
 			case 8:
@@ -142,6 +164,13 @@ void processChoice(StudentList& newList, double tuitionRate)
 			}
 			default:
 			{
+				while (cin.fail())
+				{
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+					cout << "Please enter a number.";
+				}
+				cout << endl;
 				cout << "Sorry. That is not a selection.";
 				cout << endl << endl;
 				cin.clear();
