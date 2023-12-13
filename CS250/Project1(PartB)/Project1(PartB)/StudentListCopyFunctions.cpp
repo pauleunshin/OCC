@@ -17,9 +17,30 @@ using namespace std;
 //Copy Constructor
 StudentList::StudentList(const StudentList& otherList) : StudentList()
 {
-	count = otherList.count;
-	first = otherList.first;
-	last = otherList.last; 
+	 if (otherList.first == nullptr)
+	 {
+	    first = nullptr;
+	    last = nullptr; 
+	    count = 0;
+	 }
+	 else
+	 {
+	    Node* temp = otherList.first;
+	 first = new Node;
+	 first -> setStudent(temp->getStudent());
+	 first ->setNext(nullptr);
+	 Node* current = first;
+	 temp = temp->getNext();
+	 
+	 while (temp != nullptr)
+	 {
+	    Node* newNext = new Node(temp->getStudent(), nullptr);
+	    current -> setNext(newNext);
+	    current = current->getNext();
+	    temp = temp->getNext();
+	 }
+	 count = otherList.count;
+	 }
 }
 
 //Copy assignment operator
