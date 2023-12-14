@@ -25,6 +25,7 @@ void Student::setStudent(const Student& otherStudent)
 	tuitionWasPaid = otherStudent.tuitionWasPaid;
 	coursesCompleted = otherStudent.coursesCompleted;
 }
+
 //Sets values for member variables of Student Object
 void Student::setStudentInfo(int newID, const string& newFirst, 
 	const string& newLast, bool paidTuition, 
@@ -37,6 +38,7 @@ void Student::setStudentInfo(int newID, const string& newFirst,
 	numberOfCourses = static_cast<int>(coursesTaken.size());
 	coursesCompleted = coursesTaken;
 }
+
 void Student::addCourse(const Course& newCourse, const char& newGrade)
 {
 	coursesCompleted.insert({ newCourse, newGrade });
@@ -49,27 +51,32 @@ int Student::getID() const
 {
 	return studentID;
 }
+
 //Returns student's first name
 string Student::getFirstName() const
 {
 	return firstName;
 }
+
 //Returns student's last name
 string Student::getLastName() const
 {
 	return lastName;
 }
+
 //Returns student's full name
 void Student::getName(string& newFirst, string& newLast) const
 {
 	newFirst = firstName;
 	newLast = lastName;
 }
+
 //Returns how many courses the student completed
 int Student::getNumberOfCourses() const
 {
 	return numberOfCourses;
 }
+
 //Returns how many units the student completed
 int Student::getUnitsCompleted() const
 {
@@ -80,6 +87,7 @@ int Student::getUnitsCompleted() const
 	}
 	return totalunits; 
 }
+
 //Returns a multimap of all courses 
 //the student has completed with letter grades
 multimap<Course, char> Student::getCoursesCompleted()
@@ -93,6 +101,7 @@ bool Student::isTuitionPaid() const
 {
 	return tuitionWasPaid;
 }
+
 //Checks if a student has taken/completed 
 //the paramter course and returns true/false
 bool Student::isCourseCompleted(const string& prefix, int cNumber) const
@@ -146,6 +155,7 @@ double Student::calculateGPA() const
 
 	return (totalunits > 0) ? (points / totalunits) : 0.0;
 }
+
 //Returns cost of tuition for student
 double Student::billingAmount(double tuitionRate) const
 {
@@ -158,6 +168,7 @@ void Student::printStudent() const
 {
 	cout << studentID << " - " << lastName << ", " << firstName << endl;
 }
+
 //Prints the student's ID, name, # of completed courses,
 void Student::printStudentInfo(double tuitionRate) const
 {

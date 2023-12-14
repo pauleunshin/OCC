@@ -36,6 +36,7 @@ void StudentList::addStudent(const Student& newStudent)
 	}
 	count++;
 }
+
 //Add new course to student in list
 void StudentList::addCourseToStudent(Node* studentNode, const double tuitionRate)
 {
@@ -91,6 +92,7 @@ int StudentList::getNoOfStudents() const
 {
 	return count; 
 }
+
 //Checks Course Units
 int StudentList::findCourseUnits(const string& cPrefix,
 	int cNumber) const
@@ -115,6 +117,7 @@ int StudentList::findCourseUnits(const string& cPrefix,
 	cout << "Course does not exist or match. Please try again.\n";
 	return 0;
 }
+
 //Returns pointer to Searched Student
 Node* StudentList::getStudent(int searchID)
 {
@@ -176,6 +179,7 @@ void StudentList::printStudentByID(int searchID, double tuitionRate) const
 			<< " found in the list.\n\n";
 	}
 }
+
 //Prints the info of a student by their name
 void StudentList::printStudentByName(const string& searchLastName) const
 {
@@ -201,6 +205,7 @@ void StudentList::printStudentByName(const string& searchLastName) const
 	}
 	cout << endl; 
 }
+
 //Prints the info of students enrolled in a course
 void StudentList::printStudentsByCourse(const string& searchCourse, 
 	int searchCourseNum) const
@@ -228,6 +233,7 @@ void StudentList::printStudentsByCourse(const string& searchCourse,
 	}
 	cout << endl;
 }
+
 //Prints the info of all students in linked list
 void StudentList::printAllStudents(double tuitionRate) const
 {
@@ -240,6 +246,7 @@ void StudentList::printAllStudents(double tuitionRate) const
 		current = current->getNext();
 	} 
 }
+
 //Prints to specified teext file with tuitionRate
 void StudentList::printStudentsToFile(ostream& outputFile,
 	double tuitionRate) const
@@ -299,6 +306,7 @@ void StudentList::printStudentsToFile(ostream& outputFile,
 		current = current->getNext();
 	}
 }
+
 //Print students on Hold
 void StudentList::printStudentsOnHold(double tuitionRate) const
 {
