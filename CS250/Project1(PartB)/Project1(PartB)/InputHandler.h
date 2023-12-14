@@ -1,3 +1,12 @@
+/*
+	Shin, Robin
+
+	Project: Grade Report
+	CS A250
+	Fall 2023
+
+	Input Handler Header File
+*/
 #ifndef INPUTHANDLER_H
 #define INPUTHANDLER_H
 

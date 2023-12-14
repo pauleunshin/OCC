@@ -1,6 +1,15 @@
 #include "OutputHandler.h"
 
 #include "Course.h"
+/*
+	Shin, Robin
+
+	Project: Grade Report
+	CS A250
+	Fall 2023
+
+	Output Handler Source-Code File
+*/
 #include "Student.h"
 #include "StudentList.h"
 
