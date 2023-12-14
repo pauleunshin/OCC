@@ -38,7 +38,7 @@ void Student::setStudentInfo(int newID, const string& newFirst,
 	numberOfCourses = static_cast<int>(coursesTaken.size());
 	coursesCompleted = coursesTaken;
 }
-void Student::addCourse(const Course& newCourse, const char newGrade)
+void Student::addCourse(const Course& newCourse, const char& newGrade)
 {
 	coursesCompleted.insert({ newCourse, newGrade });
 	numberOfCourses++;
@@ -172,10 +172,12 @@ void Student::printStudentInfo(double tuitionRate) const
 	{
 		cout << iter.first.getCoursePrefix() << " " 
 			<< iter.first.getCourseNumber() << "    "
-			<< iter.first.getCourseUnits() << "     " << iter.second << endl;
+			<< iter.first.getCourseUnits() << "     " 
+			<< iter.second << endl;
 	}
 	cout << endl;
-	cout << "Total number of credit hours: " << getUnitsCompleted() << endl;
+	cout << "Total number of credit hours: " 
+		<< getUnitsCompleted() << endl;
 	if (isTuitionPaid())
 	{
 		cout.precision(2);

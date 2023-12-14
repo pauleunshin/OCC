@@ -37,7 +37,7 @@ void StudentList::addStudent(const Student& newStudent)
 	count++;
 }
 //Add new course to student in list
-void StudentList::addCourseToStudent(Node* studentNode)
+void StudentList::addCourseToStudent(Node* studentNode, const double tuitionRate)
 {
 	string cPrefix;
 	int cNumber;
@@ -49,6 +49,7 @@ void StudentList::addCourseToStudent(Node* studentNode)
 	cin >> cPrefix;
 	cout << "Please enter the 3 digit course number: ";
 	cin >> cNumber;
+
 	while (cin.fail())
 	{
 		cin.clear();
@@ -56,22 +57,31 @@ void StudentList::addCourseToStudent(Node* studentNode)
 		cout << "Please enter a number for the course number.\n";
 		failure = true; 
 	}
+
 	if (!failure)
 	{
 		cout << "What grade was received?: ";
 		cin >> grade;
-		cUnits = findCourseUnits(cPrefix, cNumber);
-
-		if (cUnits > 0)
+		if (gradeCheck(grade))
 		{
-			Course newCourse(cPrefix, cNumber, cUnits);
-			Student temp = studentNode->getStudent();
-			temp.addCourse(newCourse, grade);
-			studentNode->setStudent(temp);
-			cout << "Successfully added " << cPrefix << " " << cNumber << endl;
+			cUnits = findCourseUnits(cPrefix, cNumber);
+
+			if (cUnits > 0)
+			{
+				Course newCourse(cPrefix, cNumber, cUnits);
+				Student temp;
+
+				temp = studentNode->getStudent();
+				temp.addCourse(newCourse, grade);
+				studentNode->setStudent(temp);
+				cout << endl;
+				cout << "Successfully added " << cPrefix
+					<< " " << cNumber << ".\n\n";
+				studentNode->getStudent().printStudentInfo(tuitionRate);
+			}
 		}
+		else cout << "\nInvalid grade entry. Please try again.\n\n";
 	}
-	cout << endl;
 }
 
 //Accessors
@@ -100,37 +110,42 @@ int StudentList::findCourseUnits(const string& cPrefix,
 		}
 		current = current->getNext();
 	}
-	cout << "Course does not exist or match. Please try again.\n\n";
+	cout << "Course does not exist or match. Please try again.\n";
 	return 0;
 }
 //Returns pointer to Searched Student
 Node* StudentList::getStudent(int searchID)
 {
 	Node* current;
+	bool found; 
 	current = first;
-
+	found = false;
+	
 	while (current != nullptr)
 	{
 		if (searchID == current->getStudent().getID())
 		{
 			string lName;
 			string fName;
+			found = true;
 
 			cout << "Please enter the last name: ";
 			cin >> lName;
 			cout << "Please enter the first name: ";
 			cin >> fName;
+			cout << endl;
 
 			if (lName == current->getStudent().getLastName() &&
 				fName == current->getStudent().getFirstName())
 			{
 				return current;
 			}
-			else cout << "Incorrect name. Please try again.\n\n";
+			else cout << "Name does not match. Please try again.\n\n";
 		}
 		current = current->getNext();
 	}
-	cout << "No students with ID " << searchID << " found in the list.\n\n";
+	if (!found) cout << "\nNo students with ID " << searchID 
+		<< " found in the list.\n\n";
 	return nullptr;
 }
 
@@ -153,7 +168,8 @@ void StudentList::printStudentByID(int searchID, double tuitionRate) const
 
 	if (!found)
 	{
-		cout << "No students with ID " << searchID << " found in the list.\n";
+		cout << "No students with ID " << searchID 
+			<< " found in the list.\n\n";
 	}
 }
 //Prints the info of a student by their name
@@ -173,7 +189,8 @@ void StudentList::printStudentByName(const string& searchLastName) const
 
 	if (!found)
 	{
-		cout << "No student with last name " << searchLastName << " is on the list.\n";
+		cout << "No students with last name " << searchLastName 
+			<< " is on the list.\n";
 	}
 	cout << endl; 
 }
@@ -197,7 +214,7 @@ void StudentList::printStudentsByCourse(const string& searchCourse,
 	if (!found)
 	{
 		cout << "No students enrolled in " << searchCourse << " " 
-			<< searchCourseNum << endl;
+			<< searchCourseNum << "." << endl;
 	}
 	cout << endl;
 }
@@ -213,13 +230,16 @@ void StudentList::printAllStudents(double tuitionRate) const
 	} 
 }
 //Prints to specified teext file with tuitionRate
-void StudentList::printStudentsToFile(ostream& outputFile, double tuitionRate) const
+void StudentList::printStudentsToFile(ostream& outputFile,
+	double tuitionRate) const
 {
 	Node* current = first;
 
 	while (current != nullptr)
 	{
-		Student studentData = current->getStudent();
+		Student studentData;
+		studentData = current->getStudent();
+
 		outputFile << "Student Name: " << studentData.getLastName() 
 			<< ", " << studentData.getFirstName() << endl;
 		outputFile << "Student ID: " << studentData.getID() << endl;
@@ -236,7 +256,6 @@ void StudentList::printStudentsToFile(ostream& outputFile, double tuitionRate) c
 				<< endl;
 		}
 
-		outputFile << endl;
 		outputFile << "Total number of credit hours: " 
 			<< studentData.getUnitsCompleted() << endl;
 
@@ -249,8 +268,10 @@ void StudentList::printStudentsToFile(ostream& outputFile, double tuitionRate) c
 		else
 		{
 			outputFile.precision(2);
-			outputFile << "*** Grades are being held for not paying the tuition. ***\n";
-			outputFile << "Amount Due: $" << fixed << studentData.billingAmount(tuitionRate);
+			outputFile << "*** Grades are being held for"
+				<< " not paying the tuition. ***\n";
+			outputFile << "Amount Due: $" << fixed 
+				<< studentData.billingAmount(tuitionRate);
 			outputFile << endl;
 		}
 
@@ -292,6 +313,28 @@ void StudentList::printStudentsOnHold(double tuitionRate) const
 		cout << "There are no students on hold.\n";
 	}
 	cout << endl;
+}
+
+//Booleans
+//Test if entered grade is a valid entry
+bool StudentList::gradeCheck(const char grade)
+{
+	switch (grade)
+	{
+	case 'A':
+	case 'B':
+	case 'C':
+	case 'D':
+	case 'F':
+	{
+		return true;
+		break;
+	}
+	default:
+	{
+		return false;
+	}
+	}
 }
 
 //Removes all students in the list

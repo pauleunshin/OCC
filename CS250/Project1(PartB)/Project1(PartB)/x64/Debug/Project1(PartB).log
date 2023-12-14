@@ -1,3 +1,3 @@
-﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Project1(PartB).vcxproj).  This can lead to incorrect clean and rebuild behavior.
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(534,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Project1(PartB).vcxproj).  This can lead to incorrect clean and rebuild behavior.
   StudentList.cpp
-  Project1(PartB).vcxproj -> C:\Users\Paul\source\repos\pauleunshin\OCC\CS250\Project1(PartB)\x64\Debug\GradeCalculator.exe
+  Project1(PartB).vcxproj -> C:\Users\pshin6\Source\Repos\OCC\CS250\Project1(PartB)\x64\Debug\GradeCalculator.exe
