@@ -142,7 +142,6 @@ double Student::calculateGPA() const
 			points += 1.0 * units;
 			break;
 		}
-
 	}
 	cout.precision(2);
 
@@ -168,6 +167,7 @@ void Student::printStudentInfo(double tuitionRate) const
 	cout << "Number of Courses completed: " << numberOfCourses << endl;
 	cout << endl;
 	cout << "CourseNo  Units  Grade\n";
+
 	for (auto iter : coursesCompleted)
 	{
 		cout << iter.first.getCoursePrefix() << " " 
@@ -178,6 +178,7 @@ void Student::printStudentInfo(double tuitionRate) const
 	cout << endl;
 	cout << "Total number of credit hours: " 
 		<< getUnitsCompleted() << endl;
+
 	if (isTuitionPaid())
 	{
 		cout.precision(2);
@@ -192,6 +193,7 @@ void Student::printStudentInfo(double tuitionRate) const
 			<< billingAmount(tuitionRate);
 		cout << endl;
 	}
+
 	cout << endl;
 	for (int i = 0; i < 24; i++)
 	{

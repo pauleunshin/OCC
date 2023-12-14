@@ -43,7 +43,8 @@ void StudentList::addCourseToStudent(Node* studentNode, const double tuitionRate
 	int cNumber;
 	int cUnits;
 	char grade;
-	bool failure = false;
+	bool failure;
+	failure = false;
 
 	cout << "Please enter the 4 letter course prefix: ";
 	cin >> cPrefix;
@@ -94,7 +95,8 @@ int StudentList::getNoOfStudents() const
 int StudentList::findCourseUnits(const string& cPrefix,
 	int cNumber) const
 {
-	Node* current = first;
+	Node* current;
+	current = first;
 
 	while (current != nullptr)
 	{
@@ -153,8 +155,10 @@ Node* StudentList::getStudent(int searchID)
 //Prints the info of a student in the list
 void StudentList::printStudentByID(int searchID, double tuitionRate) const
 {
-	Node* current = first;
-	bool found = false;
+	Node* current;
+	bool found;
+	current = first;
+	found = false;
 
 	while (current != nullptr && !found)
 	{
@@ -175,8 +179,11 @@ void StudentList::printStudentByID(int searchID, double tuitionRate) const
 //Prints the info of a student by their name
 void StudentList::printStudentByName(const string& searchLastName) const
 {
-	Node* current = first;
-	bool found = false;
+	Node* current;
+	bool found;
+	current = first;
+	found = false;
+
 	while (current != nullptr)
 	{
 		if (searchLastName == current->getStudent().getLastName())
@@ -198,8 +205,11 @@ void StudentList::printStudentByName(const string& searchLastName) const
 void StudentList::printStudentsByCourse(const string& searchCourse, 
 	int searchCourseNum) const
 {
-	Node* current = first;
-	bool found = false;
+	Node* current;
+	bool found;
+	current = first;
+	found = false;
+
 	while (current != nullptr)
 	{
 		if (current->getStudent().isCourseCompleted(searchCourse,
@@ -221,7 +231,8 @@ void StudentList::printStudentsByCourse(const string& searchCourse,
 //Prints the info of all students in linked list
 void StudentList::printAllStudents(double tuitionRate) const
 {
-	Node* current = first;
+	Node* current;
+	current = first;
 
 	while (current != nullptr)
 	{
@@ -233,7 +244,8 @@ void StudentList::printAllStudents(double tuitionRate) const
 void StudentList::printStudentsToFile(ostream& outputFile,
 	double tuitionRate) const
 {
-	Node* current = first;
+	Node* current;
+	current = first; 
 
 	while (current != nullptr)
 	{
@@ -290,12 +302,16 @@ void StudentList::printStudentsToFile(ostream& outputFile,
 //Print students on Hold
 void StudentList::printStudentsOnHold(double tuitionRate) const
 {
-	Node* current = first;
-	bool found = false;
-	
+	Node* current;
+	bool found;
+	current = first;
+	found = false;
+
 	while (current != nullptr)
 	{
-		Student studentData = current->getStudent();
+		Student studentData;
+		studentData = current->getStudent();
+
 		if (!studentData.isTuitionPaid())
 		{
 			studentData.printStudent();
@@ -340,7 +356,8 @@ bool StudentList::gradeCheck(const char grade)
 //Removes all students in the list
 void StudentList::clearStudentList()
 {
-	Node* current = first;
+	Node* current;
+	current = first;
 	while (current != nullptr)
 	{
 		Node* temp = current;
