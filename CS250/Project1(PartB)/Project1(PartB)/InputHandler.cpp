@@ -1,3 +1,12 @@
+/*
+	Shin, Robin
+
+	Project: Grade Report
+	CS A250
+	Fall 2023
+
+	Input Handler Source-Code File
+*/
 #include "InputHandler.h"
 
 #include "Course.h"

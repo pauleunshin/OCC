@@ -20,7 +20,7 @@ using namespace std;
 const string STUDENTDATA ("student_data.txt");
 
 void displayMenu();
-void processChoice(StudentList& newList, double tuitionRate);
+void processChoice(StudentList& newList, const double tuitionRate);
 
 int main()
 {
@@ -31,7 +31,7 @@ int main()
 	return 0;
 }
 
-void displayMenu()
+void displayMenu() 
 {
 	cout << "*** MAIN MENU ***\n\n";
 	cout << "Select one of the following: \n\n";
@@ -45,19 +45,19 @@ void displayMenu()
 	cout << "    8: To exit\n\n";
 }
 
-void processChoice(StudentList& newList, double tuitionRate)
+void processChoice(StudentList& newList, const double tuitionRate)
 {
-	
 	bool shutdown = false;
-
 	while (!shutdown)
 	{
 		int choice;
-		bool failure = false;
+		bool failure;
+		failure = false;
 		displayMenu();
 
 		cout << "Enter your choice: ";
 		cin >> choice;
+		cout << endl;
 		switch (choice)
 			{
 			case 1:
@@ -80,7 +80,8 @@ void processChoice(StudentList& newList, double tuitionRate)
 					failure = true;
 				}
 				cout << endl;
-				if(!failure) newList.printStudentByID(searchID, tuitionRate);
+
+				if (!failure) newList.printStudentByID(searchID, tuitionRate);
 				system("Pause");
 				break;
 			}
@@ -150,7 +151,7 @@ void processChoice(StudentList& newList, double tuitionRate)
 
 					if (studentNode != nullptr)
 					{
-						newList.addCourseToStudent(studentNode);
+						newList.addCourseToStudent(studentNode, tuitionRate);
 					}
 				}
 				system("Pause");
@@ -169,11 +170,9 @@ void processChoice(StudentList& newList, double tuitionRate)
 				{
 					cin.clear();
 					cin.ignore(numeric_limits<streamsize>::max(), '\n');
-					cout << "Please enter a number.";
+					cout << "Please enter a number between 1 and 8.\n";
 				}
-				cout << endl;
-				cout << "Sorry. That is not a selection.";
-				cout << endl << endl;
+				cout << "Sorry. That is not a selection.\n\n";
 				cin.clear();
 				system("Pause");
 			}

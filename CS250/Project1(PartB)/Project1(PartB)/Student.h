@@ -32,7 +32,7 @@ public:
 		const std::string& newLast,	bool paidtuition, 
 		const std::multimap<Course, char>& coursesTaken);
 	//Adds a course to the student
-	void addCourse(const Course& newCourse, const char newGrade);
+	void addCourse(const Course& newCourse, const char& newGrade);
 
 	//Accessors
 	//Returns student ID

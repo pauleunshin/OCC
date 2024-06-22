@@ -25,24 +25,25 @@ StudentList::StudentList(const StudentList& otherList) : StudentList()
 	 }
 	 else
 	 {
-	    Node* temp = otherList.first;
-	 first = new Node;
-	 first -> setStudent(temp->getStudent());
-	 first ->setNext(nullptr);
-	 Node* current = first;
-	 temp = temp->getNext();
+		 Node* temp = otherList.first;
+		 first = new Node;
+		 first->setStudent(temp->getStudent());
+		 first->setNext(nullptr);
+		 Node* current = first;
+		 temp = temp->getNext();
 	 
-	 while (temp != nullptr)
-	 {
-	    Node* newNext = new Node(temp->getStudent(), nullptr);
-	    current -> setNext(newNext);
-	    current = current->getNext();
-	    temp = temp->getNext();
-	 }
-	 count = otherList.count;
+		 while (temp != nullptr)
+		 {
+			Node* newNext = new Node(temp->getStudent(), nullptr);
+			current->setNext(newNext);
+			current = current->getNext();
+			temp = temp->getNext();
+		 }
+		 count = otherList.count;
 	 }
 }
 
+//Copy Functions
 //Copy assignment operator
 StudentList& StudentList::operator=(const StudentList& otherList)
 {
@@ -70,6 +71,7 @@ void StudentList::copyCallingObjIsEmpty(const StudentList& otherList)
 {
 	count = otherList.count;
 	Node* current = otherList.first;
+
 	while (current != nullptr)
 	{
 		addStudent(current->getStudent());
@@ -82,6 +84,7 @@ void StudentList::copyObjectsSameLength(const StudentList& otherList)
 {
 	Node* current = otherList.first;
 	Node* temp = first;
+
 	while (current != nullptr)
 	{
 		temp->setStudent(current->getStudent());
@@ -96,16 +99,19 @@ void StudentList::copyCallingObjLonger(const StudentList& otherList)
 	count = otherList.count;
 	Node* current = otherList.first;
 	Node* temp = first;
+
 	while (current->getNext() != nullptr)
 	{
 		temp->setStudent(current->getStudent());
 		temp = temp->getNext();
 		current = current->getNext();
 	}
+
 	temp->setStudent(current->getStudent());
 	last = temp;
 	temp = temp->getNext();
 	last->setNext(nullptr);
+
 	while (temp != nullptr)
 	{
 		Node* tempDel = temp->getNext();
@@ -120,12 +126,14 @@ void StudentList::copyCallingObjShorter(const StudentList& otherList)
 	count = otherList.count;
 	Node* current = otherList.first;
 	Node* temp = first;
+
 	while (temp != nullptr)
 	{
 		temp->setStudent(current->getStudent());
 		temp = temp->getNext();
 		current = current->getNext();
 	}
+
 	while (current != nullptr)
 	{
 		addStudent(current->getStudent());

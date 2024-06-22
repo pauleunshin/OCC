@@ -50,7 +50,7 @@ public:
 	//Add a student to the linked list 
 	void addStudent(const Student& newStudent);
 	//Add new course to student in list
-	void addCourseToStudent(Node* studentNode);
+	void addCourseToStudent(Node* studentNode, const double tuitionRate);
 
 	//Accessors
 	//Return how many students are in the list
@@ -72,9 +72,14 @@ public:
 	//Prints the info of all students in linked list
 	void printAllStudents(double tuitionRate) const;
 	//Prints students to file
-	void printStudentsToFile(std::ostream& outputFile, double tuitionRate) const;
+	void printStudentsToFile(std::ostream& outputFile,
+		double tuitionRate) const;
 	//Print students on Hold
 	void printStudentsOnHold(double tuitionRate) const;
+
+	//Booleans
+	//Test if entered grade is a valid entry
+	bool gradeCheck(const char grade);
 
 	//Removes all students in the list
 	void clearStudentList();
@@ -88,7 +93,7 @@ private:
 	Node* first;
 	Node* last;
 
-	//Copy Functions
+	//Copy Functions 
 	//Creates nodes to copy Parameter Object of larger size
 	void copyCallingObjIsEmpty(const StudentList& otherList);
 	//Copies Paramater Object of same size

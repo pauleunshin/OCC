@@ -29,11 +29,13 @@ string Course::getCoursePrefix() const
 {
 	return coursePrefix;
 }
+
 //Returns member variable courseNumber
 int Course::getCourseNumber() const
 {
 	return courseNumber;
 }
+
 //Returns member variable courseUnits
 int Course::getCourseUnits() const
 {
