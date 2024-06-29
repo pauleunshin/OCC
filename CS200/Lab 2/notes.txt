@@ -1,0 +1,10 @@
+What went wrong?
+- Tried to use == operator on an array index which wasn't initialized
+ > Gave me address instead of values i wanted
+ > Either need to initialize with all values at a start value
+ > Make check conditional for true/false
+
+
+- Honestly rest was just me being stupid and not writing code in chunks and trying to brute force the entire code
+- Take my time and write code in chunks
+- I could've knocked this out in an hour or two but instead it took 5+. 
