@@ -8,3 +8,12 @@ What went wrong?
 - Honestly rest was just me being stupid and not writing code in chunks and trying to brute force the entire code
 - Take my time and write code in chunks
 - I could've knocked this out in an hour or two but instead it took 5+. 
+
+
+lab_2 vs lab_2alt
+- Weird requirement to not start the BFS with the first vertex in a queue
+- Added like 8 lines. I don't want to bother to shorten it and I'll just follow it
+- lab_2alt has my original code with adding start vertex to queue
+
+
+- BFS don't add the start vertex to the queue only the BFS list ig
