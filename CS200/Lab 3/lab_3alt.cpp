@@ -5,6 +5,7 @@
 Node* insertNode = new Node();
 insertNode->data = elemToInsert;
 Node* current = root;
+
 if (root == nullptr) {
     root = insertNode;
     count++;
@@ -12,23 +13,24 @@ if (root == nullptr) {
 }
 else {
     Node* current = root;
-    bool found = false;
-    while (!found) {
+    bool positionFound = false;
+
+    while (!positionFound) {
         if (current->data > elemToInsert) {
             if (current->llink == nullptr) {
-                found = true;
+                positionFound = true;
             }
             else current = current->llink;
         }
         else if (current->data < elemToInsert) {
             if (current->rlink == nullptr) {
-                found = true;
+                positionFound = true;
             }
             else current = current->rlink;
         }
         else if (current->data == elemToInsert) {
-            found = true;
-            cerr << "Element " << elemToInsert 
+            positionFound = true;
+            cerr << "Element " << elemToInsert
                 << " is already in the list. Duplicates are not allowed.\n";
         }
     }
@@ -44,7 +46,7 @@ else {
 
 
 //Part 2
-void BST::nonRecursiveInorder() const {
+void BST::nonRecursiveInorder() const{
     Node* current = root;
     stack<Node*> inorder;
 
