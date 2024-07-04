@@ -12,23 +12,23 @@ if (root == nullptr) {
 }
 else {
     Node* current = root;
-    bool positionFound = false;
-    while (!positionFound) {
+    bool found = false;
+    while (!found) {
         if (current->data > elemToInsert) {
             if (current->llink == nullptr) {
-                positionFound = true;
+                found = true;
             }
             else current = current->llink;
         }
         else if (current->data < elemToInsert) {
             if (current->rlink == nullptr) {
-                positionFound = true;
+                found = true;
             }
             else current = current->rlink;
         }
         else if (current->data == elemToInsert) {
-            positionFound = true;
-            cerr << "Element " << elemToInsert
+            found = true;
+            cerr << "Element " << elemToInsert 
                 << " is already in the list. Duplicates are not allowed.\n";
         }
     }
